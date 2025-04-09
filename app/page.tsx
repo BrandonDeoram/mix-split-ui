@@ -20,8 +20,10 @@ export default function LandingPage() {
                 organize each track, complete with Spotify links for easy
                 access.
               </p>
+              <Button variant={"default"} className="mt-2">
+                Get Started
+              </Button>
             </div>
-            <Button variant={"default"}>Sign in</Button>
           </div>
         </section>
       </main>
