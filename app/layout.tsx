@@ -24,7 +24,8 @@ export default function RootLayout({
       <body
         className={`${nunitoSans.variable} font-sans bg-background theme-custom`}
       >
-        {children}
+        <div className="fixed inset-0 bg-dots pointer-events-none z-0" />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );

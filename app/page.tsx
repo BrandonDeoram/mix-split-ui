@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="relative">
       <Nav />
       <main className="container text-foreground mx-auto w-full min-h-screen bg-background mt-20 gap-2 flex flex-col">
-        <div className="absolute inset-0 bg-dots pointer-events-none z-0" />
         <section className="mx-3">
           <div className="mx-auto w-full relative max-w-[1200px] gap-8 overflow-clip rounded-xl py-6 md:py-20 bg-background px-1 md:px-1">
             <div className="flex flex-col pb-3.5 items-center text-center">

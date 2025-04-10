@@ -1,13 +1,19 @@
-import { prisma } from "@/lib/prisma";
-import { User } from "@prisma/client";
+"use client";
+import { authClient } from "@/lib/auth-client";
 import React from "react";
 
-export default async function Dashboard() {
-  const users: User[] = await prisma.user.findMany();
+export default function Dashboard() {
+  const {
+    data: session,
+    isPending, //loading state
+    error, //error object
+    refetch, //refetch the session
+  } = authClient.useSession();
+  console.log("Current Session", session);
   return (
     <div>
       Dashboard
-      {users ? users[0].email : ""}
+      <span>Current User {session?.user.name}</span>
     </div>
   );
 }
