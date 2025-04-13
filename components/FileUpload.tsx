@@ -3,18 +3,18 @@ import { useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
 
 export default function FileUploadDemo() {
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File | null>();
 
-  const handleFileUpload = (files: File[]) => {
-    setFiles(files);
-    console.log(files);
+  const handleFileUpload = (file: File | null) => {
+    setFile(file);
+    console.log(file);
   };
 
-  const handleSubmit = (files: File[]) => {
+  const handleSubmit = (file: File | null) => {
     // Process the files here
-    console.log("Submitting files:", files);
+    console.log("Submitting files:", file);
     // You could add form submission logic here
-    alert(`Submitting ${files.length} file(s)`);
+    alert(`Submitting ${file?.name} file(s)`);
   };
 
   return (

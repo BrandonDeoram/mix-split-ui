@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <div className="relative">
       <Nav />
-      <main className="container text-foreground mx-auto w-full min-h-screen bg-transparent mt-20 gap-2 flex flex-col">
+      <main className="container text-foreground mx-auto w-full bg-transparent mt-20 gap-2 flex flex-col">
         <section className="mx-3">
           <div className="bg-transparent mx-auto w-full relative max-w-[1200px] gap-8 overflow-clip rounded-xl py-6 md:py-20 bg-background px-1 md:px-1">
             <div className="flex flex-col pb-3.5 items-center text-center">
