@@ -5,9 +5,9 @@ export default function LandingPage() {
   return (
     <div className="relative">
       <Nav />
-      <main className="container text-foreground mx-auto w-full min-h-screen bg-background mt-20 gap-2 flex flex-col">
+      <main className="container text-foreground mx-auto w-full min-h-screen bg-transparent mt-20 gap-2 flex flex-col">
         <section className="mx-3">
-          <div className="mx-auto w-full relative max-w-[1200px] gap-8 overflow-clip rounded-xl py-6 md:py-20 bg-background px-1 md:px-1">
+          <div className="bg-transparent mx-auto w-full relative max-w-[1200px] gap-8 overflow-clip rounded-xl py-6 md:py-20 bg-background px-1 md:px-1">
             <div className="flex flex-col pb-3.5 items-center text-center">
               <h1 className="font-cal !leading-xs md:!leading-h1 text-[32px] lg:text-5xl pb-3 font-bold">
                 Transform Your Mix into Individual Tracks

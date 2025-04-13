@@ -2,8 +2,7 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { authClient } from "@/lib/auth-client";
-import router from "next/router";
-
+import { useRouter } from "next/navigation";
 export default function Navbar() {
   const {
     data: session,
@@ -11,7 +10,7 @@ export default function Navbar() {
     error, //error object
     refetch, //refetch the session
   } = authClient.useSession();
-
+  const router = useRouter();
   async function handleSignIn() {
     await authClient.signIn.social({
       provider: "google",
@@ -20,13 +19,8 @@ export default function Navbar() {
   }
 
   async function handleSignOut() {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/login");
-        },
-      },
-    });
+    await authClient.signOut();
+    router.push("/");
   }
   return (
     <nav className="bg-transparent rounded-2xl container mx-auto w-full mt-2">
