@@ -80,7 +80,7 @@ export const FileUpload = ({
   });
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col bg-transparent">
       <div className="w-full" {...getRootProps()}>
         <motion.div
           onClick={handleClick}

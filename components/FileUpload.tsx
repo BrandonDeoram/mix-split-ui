@@ -88,7 +88,6 @@ export default function AudioFileUpload({
   };
   const handleFileUpload = (file: File | null) => {
     setFile(file);
-    console.log(file);
   };
 
   const handleSubmit = (file: File | null) => {
@@ -99,7 +98,7 @@ export default function AudioFileUpload({
 
   return (
     <>
-      <div className="w-full mx-auto">
+      <div className="w-full mx-auto bg-transparent">
         <FileUpload onChange={handleFileUpload} onSubmit={handleSubmit} />
       </div>
     </>
