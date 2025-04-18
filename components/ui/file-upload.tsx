@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
+import { useUploadStore } from "@/store/uploadStore";
 
 const mainVariant = {
   initial: {
@@ -41,7 +42,7 @@ export const FileUpload = ({
 }: FileUploadProps) => {
   const [file, setFile] = useState<File | null>(externalFiles || null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const setIsProcessing = useUploadStore((state) => state.setIsProcessing);
   // Update local file when external file prop changes
   useEffect(() => {
     if (externalFiles) {
@@ -62,6 +63,7 @@ export const FileUpload = ({
   };
 
   const handleClear = () => {
+    setIsProcessing(false);
     setFile(null);
     onChange?.(null);
   };

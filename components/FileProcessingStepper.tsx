@@ -13,16 +13,14 @@ import {
   StepperDescription,
   StepperSeparator,
 } from "./ui/stepper";
+import { useUploadStore } from "@/store/uploadStore";
 
-interface FileProcessingStepperProps {
-  currentStep: number;
-  error: string | null;
-}
+export function FileProcessingStepper() {
+  const currentStep = useUploadStore((state) => state.currentStep);
+  const setIsProcessing = useUploadStore((state) => state.setIsProcessing);
 
-export function FileProcessingStepper({
-  currentStep,
-  error,
-}: FileProcessingStepperProps) {
+  const error = useUploadStore((state) => state.error);
+
   const [progressValue, setProgressValue] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -33,6 +31,7 @@ export function FileProcessingStepper({
       setStartTime(Date.now());
       setElapsedTime(0);
       setProgressValue(0);
+      setIsProcessing(true);
 
       const interval = setInterval(() => {
         setElapsedTime((prev) => prev + 1);
@@ -41,6 +40,7 @@ export function FileProcessingStepper({
       return () => clearInterval(interval);
     } else if (currentStep === 3) {
       // Reset when complete
+      console.log("Reset when complete");
       setProgressValue(100);
     } else {
       setStartTime(null);

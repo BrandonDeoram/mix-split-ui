@@ -1,52 +1,43 @@
 "use client";
-import { useState } from "react";
 import { FileUpload } from "@/components/ui/file-upload";
-import { FileProcessingStepper } from "./FileProcessingStepper";
+import { useUploadStore } from "@/store/uploadStore";
+import { useState } from "react";
 
-type AudioFileUploadProps = {
-  currentStep: number;
-  setCurrentStep: (step: number) => void;
-  setError: (error: string | null) => void;
-};
+export default function AudioFileUpload() {
+  // Store
+  const setStep = useUploadStore((s) => s.setStep);
+  const setError = useUploadStore((s) => s.setError);
+  const setIsProcessing = useUploadStore((s) => s.setIsProcessing);
+  const processingTime = useUploadStore((s) => s.processingTime);
 
-export default function AudioFileUpload({
-  currentStep,
-  setCurrentStep,
-  setError,
-}: AudioFileUploadProps) {
-  const [file, setFile] = useState<File | null>();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [results, setResults] = useState<any>(null);
-  const [processingTime, setProcessingTime] = useState<number>(10); // seconds
-
-  console.log("File upload audio ");
+  // Local state
+  const [file, setFile] = useState<File | null>(null);
   const startProcessing = async () => {
     if (!file) return;
 
     setIsProcessing(true);
-    setCurrentStep(0);
+    setStep(0);
     setError(null);
 
     try {
       // Step 1: Generate presigned URL
-      setCurrentStep(0);
+      setStep(0);
       const presignedUrl = await generatePresignedUrl(file.name);
 
       // Step 2: Upload file
-      setCurrentStep(1);
+      setStep(1);
       await uploadFile(presignedUrl, file);
 
       // Step 3: Process data
-      setCurrentStep(2);
+      setStep(2);
       const data = await processData(file.name);
 
       // Set results
-      setResults(data);
-      setCurrentStep(3);
+      setStep(3);
     } catch (err: any) {
       setError(err.message || "An error occurred during processing");
     } finally {
-      setIsProcessing(false);
+      // setIsProcessing(false);
     }
   };
 
